@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>{{ category.name }}</h2>
+
+<ul>
+    {% for book in books %}
+        <li>
+            <a href="{% url 'book_detail' book.id %}">{{ book.title }}</a>
+        </li>
+    {% endfor %}
+</ul>
+
+<ul>
+    <li>
+        <h1>{{ books.0.title }}</h1>
+        <h2>Obrázky:</h2>
+        <ul>
+            {% for image in books.0.image.all %}
+                <li>
+                    <img src="{{ image.image.url }}" alt="{{ image.description }}">
+                </li>
+            {% endfor %}
+        </ul>
+    </li>
+</ul>
+
+{% endblock %}

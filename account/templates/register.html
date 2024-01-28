@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Registrovať sa</h2>
+<form method="post" action="{% url 'register' %}">
+    {% csrf_token %}
+
+    {{ form.username.label_tag }} {{ form.username }}
+    {{ form.first_name.label_tag }} {{ form.first_name }}
+    {{ form.last_name.label_tag }} {{ form.last_name }}
+    {{ form.email.label_tag }} {{ form.email }}
+    {{ form.password1.label_tag }} {{ form.password1 }}
+    {{ form.password2.label_tag }} {{ form.password2 }}
+
+
+    {{ form.op.label_tag }} {{ form.op }}
+    {{ form.title.label_tag }} {{ form.title }}
+    {{ form.gender.label_tag }} {{ form.gender }}
+    {{ form.birth_date.label_tag }} {{ form.birth_date }}
+    {{ form.mobile_number.label_tag }} {{ form.mobile_number }}
+    {{ form.address.label_tag }} {{ form.address }}
+
+    <button type="submit">Registrovať sa</button>
+</form>
+<p>
+    Ste už zaregistrovaný/á
+    <a href="{% url 'login' %}">Prihlásiť sa</a>
+</p>
+
+{% endblock %}

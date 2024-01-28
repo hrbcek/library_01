@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  <h1>{{ book.title }}</h1>
+  <p>Autor: {{ book.author }}</p>
+
+  <h2>Obrázky:</h2>
+  <ul>
+      {% for image in book.image.all %}
+          <li>
+              <img src="{{ image.url }}" alt="{{ image.description }}">
+          </li>
+      {% endfor %}
+  </ul>
+
+  {% if user.is_authenticated %}
+    {% if not book.is_borrowed %}
+      <form method="post" action="{% url 'borrow_book' book.id %}">
+        {% csrf_token %}
+        <button type="submit">Požičať túto knihu</button>
+      </form>
+    {% else %}
+      <p>Táto kniha je momentálne požičaná používateľom {{ book.owner.username }}.</p>
+    {% endif %}
+  {% else %}
+    <p>Pre požičanie knihy sa, prosím, <a href="{% url 'login' %}">prihláste</a>.</p>
+  {% endif %}
+
+{% endblock %}

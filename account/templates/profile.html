@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Váš profil</h1>
+  <p>OP: {{ profile.op }}</p>
+  <p>Meno: {{ profile.user.username }}</p>
+  <p>Email: {{ profile.user.email }}</p>
+  <p>Titul: {{ profile.title }}</p>
+  <p>Pohlavie: {{ profile.get_gender_display }}</p>
+  <p>Dátum narodenia: {{ profile.birth_date }}</p>
+  <p>Telefónne číslo: {{ profile.mobile_number }}</p>
+  <p>Adresa: {{ profile.address }}</p>
+  <img src="{{ profile.avatar.url }}" alt="Avatar">
+  <h2>Požičané knihy:</h2>
+  <ul>
+    {% for borrowed_book in borrowed_books %}
+        <li>
+            <strong>Názov knihy:</strong> {{ borrowed_book.book.title }}<br>
+            <strong>Požičané dňa:</strong> {{ borrowed_book.borrow_date }}
+        </li>
+    {% endfor %}
+  </ul>
+{% endblock %}
