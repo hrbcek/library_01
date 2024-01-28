@@ -14,7 +14,6 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('auth', '0012_alter_user_first_name_max_length'),
-        ('viewer', '__first__'),
     ]
 
     operations = [
@@ -50,21 +49,5 @@ class Migration(migrations.Migration):
             managers=[
                 ('objects', django.contrib.auth.models.UserManager()),
             ],
-        ),
-        migrations.CreateModel(
-            name='Profile',
-            fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('username', models.CharField(max_length=150, unique=True)),
-                ('title', models.CharField(blank=True, max_length=50)),
-                ('gender', models.CharField(blank=True, choices=[('M', 'Muž'), ('F', 'Žena'), ('O', 'Ostatní')], max_length=1)),
-                ('avatar', models.ImageField(default='avatars/default_avatar.webp', upload_to='avatars/')),
-                ('birth_date', models.DateField(blank=True, null=True)),
-                ('mobile_number', models.CharField(blank=True, max_length=15)),
-                ('address', models.TextField(blank=True)),
-                ('op', models.CharField(blank=True, max_length=16)),
-                ('borrowed_books', models.ManyToManyField(blank=True, to='viewer.borrowedbook')),
-                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='profile', to=settings.AUTH_USER_MODEL)),
-            ],
-        ),
+        )
     ]
