@@ -20,14 +20,19 @@ from django.contrib import admin
 from django.contrib.auth.views import LoginView
 from django.urls import path, include
 
+from account.models import CustomUser, Profile
 from account.views import SignUpView, profile_view
-from viewer.models import Book, Person, Category, Image
+from viewer.models import Book, Person, Category, Image, BorrowedBook
 from viewer.views import IndexView, CategoryView, BookListView, BookDetailView, borrow_book, return_book
+
+admin.site.register(CustomUser)
+admin.site.register(Profile)
 
 admin.site.register(Book)
 admin.site.register(Person)
 admin.site.register(Category)
 admin.site.register(Image)
+admin.site.register(BorrowedBook)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
